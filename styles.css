@@ -1277,3 +1277,10 @@ html:not(.js) #vibe { display: none; }
 @media (min-width: 560px) {
   .vt__answer:last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; width: calc(50% - .4rem); }
 }
+
+/* ==========================================================================
+   18. TEN FLAVOURS: centre the lone last card in the three-column menu grid
+   ========================================================================== */
+@media (min-width: 960px) {
+  .menu-grid > li:last-child:nth-child(3n + 1) { grid-column: 2; }
+}
