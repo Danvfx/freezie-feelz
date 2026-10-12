@@ -79,28 +79,29 @@
               carefree, frustrated, confident, melancholic, affectionate,
               hopeful, curious, motivated).
      ====================================================================== */
-  // TODO: the seven flavours below are the real list from the Final Feasibility Study. Descriptions are placeholders.
-  // TODO: confirm 2 missing flavours. The study says "nine distinct flavors" but names only seven.
-  //       The group's earlier list also had Watermelon, Lemon and Orange. They are kept below as commented-out lines.
-  // TODO: moods are NOT in the study. ASSUMPTION: the mood for Strawberry, Mango, Green Apple, Blueberry, Grapes and
-  //       Lychee comes from the group's earlier mood list. Cucumber Lemonade took Lemon's old mood (Frustrated).
-  //       The addendum's own guesses were: Strawberry = Sweet, Cucumber Lemonade = Chill, Green Apple = Zesty,
-  //       Mango = Sunny, Blueberry = Calm, Grapes = Playful, Lychee = Dreamy. Confirm or change them.
-  // Photos: every live flavour now has one at assets/images/flavor-<id>.webp. Spare photos for Watermelon and Lemon are saved there too
-  // and wired into the commented-out lines below. TODO: the photo-to-flavour matching is a guess from the cup colours. Confirm it.
+  // The nine flavours below are the group's confirmed final list, each with its confirmed mood. Descriptions are placeholders (TODO: rewrite in the team's own words).
+  // RESOLVED: the study said "nine distinct flavors" but named only seven. The group has now confirmed the full nine, so Watermelon, Lemon and Orange are live.
+  //       Cucumber Lemonade (named in the study, not in the final nine) is kept below as a commented-out line.
+  // Moods are confirmed by the group (they were not in the study). The addendum's own guesses (Strawberry = Sweet, Mango = Sunny,
+  //       Green Apple = Zesty, Blueberry = Calm, Grapes = Playful, Lychee = Dreamy) are no longer used.
+  //       Final moods: Mango Joyful, Watermelon Carefree, Lemon Frustrated, Grapes Confident, Blueberry Melancholic,
+  //       Strawberry Affectionate, Lychee Hopeful, Green Apple Curious, Orange Motivated.
+  // Photos: every live flavour has one at assets/images/flavor-<id>.webp. The spare Cucumber Lemonade photo is saved there too.
+  // TODO: the photo-to-flavour matching was a guess from the cup colours. Confirm it.
   // Prices are NOT set per flavour. They come from SIZES above (16 oz and 22 oz).
   var FLAVORS = [
     { id: 'strawberry', mood: 'Affectionate', name: 'Strawberry', desc: 'Sweet strawberry made for sharing the love.', c1: '#ff9bb5', c2: '#f2456e', face: 'affectionate', image: 'assets/images/flavor-strawberry.webp' },
     { id: 'mango', mood: 'Joyful', name: 'Mango', desc: 'Sunny mango that makes any day feel like a celebration.', c1: '#ffe066', c2: '#ffb400', face: 'joyful', image: 'assets/images/flavor-mango.webp' },
     { id: 'green-apple', mood: 'Curious', name: 'Green Apple', desc: 'Crisp green apple with a tangy twist. Take a sip and find out.', c1: '#d8ff6a', c2: '#5cd13a', face: 'curious', image: 'assets/images/flavor-green-apple.webp' },
     { id: 'blueberry', mood: 'Melancholic', name: 'Blueberry', desc: 'Cool blueberry for quiet, thoughtful moments.', c1: '#7fd0ff', c2: '#1a4fd6', face: 'melancholic', image: 'assets/images/flavor-blueberry.webp' },
-    { id: 'cucumber-lemonade', mood: 'Frustrated', name: 'Cucumber Lemonade', desc: 'Cool cucumber and zesty lemonade for when things get annoying.', c1: '#f4ffb8', c2: '#6fd8b0', face: 'frustrated', image: 'assets/images/flavor-cucumber-lemonade.webp' },
+    // Cucumber Lemonade: in the study but not in the group's final nine, so it is commented out (its photo is kept):
+    // { id: 'cucumber-lemonade', mood: 'Frustrated', name: 'Cucumber Lemonade', desc: 'Cool cucumber and zesty lemonade for when things get annoying.', c1: '#f4ffb8', c2: '#6fd8b0', face: 'frustrated', image: 'assets/images/flavor-cucumber-lemonade.webp' },
     { id: 'grapes', mood: 'Confident', name: 'Grapes', desc: 'Bold grape with a smooth finish. Walk in like you own it.', c1: '#d79bff', c2: '#6c3ad8', face: 'confident', image: 'assets/images/flavor-grapes.webp' },
-    { id: 'lychee', mood: 'Hopeful', name: 'Lychee', desc: 'Light, floral lychee for when good things are coming.', c1: '#fff0f3', c2: '#f5b3c6', face: 'hopeful', image: 'assets/images/flavor-lychee.webp' }
-    // TODO: confirm 2 missing flavours. Earlier candidates kept for reference (add a comma after the line above to use one):
-    // { id: 'watermelon', mood: 'Carefree', name: 'Watermelon', desc: 'Juicy watermelon for when nothing is bugging you.', price: 50, c1: '#ff9db0', c2: '#35c27a', face: 'carefree', image: 'assets/images/flavor-watermelon.webp' },
-    // { id: 'lemon', mood: 'Frustrated', name: 'Lemon', desc: 'Sharp, zingy lemon to shake off a rough day.', price: 50, c1: '#fff59a', c2: '#f0d000', face: 'frustrated', image: 'assets/images/flavor-lemon.webp' },
-    // { id: 'orange', mood: 'Motivated', name: 'Orange', desc: 'Bright orange to get you up and going.', price: 50, c1: '#ffc266', c2: '#ff7a1a', face: 'motivated', image: 'assets/images/flavor-orange.webp' }
+    { id: 'lychee', mood: 'Hopeful', name: 'Lychee', desc: 'Light, floral lychee for when good things are coming.', c1: '#fff0f3', c2: '#f5b3c6', face: 'hopeful', image: 'assets/images/flavor-lychee.webp' },
+    // Watermelon, Lemon and Orange were not named in the study. The group confirmed them, so they are live:
+    { id: 'watermelon', mood: 'Carefree', name: 'Watermelon', desc: 'Juicy watermelon for when nothing is bugging you.', c1: '#ff9db0', c2: '#35c27a', face: 'carefree', image: 'assets/images/flavor-watermelon.webp' },
+    { id: 'lemon', mood: 'Frustrated', name: 'Lemon', desc: 'Sharp, zingy lemon to shake off a rough day.', c1: '#fff59a', c2: '#f0d000', face: 'frustrated', image: 'assets/images/flavor-lemon.webp' },
+    { id: 'orange', mood: 'Motivated', name: 'Orange', desc: 'Bright orange to get you up and going.', c1: '#ffc266', c2: '#ff7a1a', face: 'motivated', image: 'assets/images/flavor-orange.webp' }
   ];
 
   /* ======================================================================
@@ -843,31 +844,33 @@
     Each answer gives points to flavours (by id). The flavour with the most points wins; earlier
     questions break ties. A flavour that is not in FLAVORS is ignored, so the quiz keeps working
     when flavours are added or removed. To make a new flavour reachable, add its id to some answers.
-    TODO: the moods behind this scoring are assumptions (see FLAVORS). Confirm with the group.
+    The moods behind this scoring are the group's confirmed ones (see FLAVORS). TODO: the questions and points are placeholders.
   */
   var VIBE_QUESTIONS = [
     { q: 'How do you feel today?', answers: [
       { text: 'Sunny and happy', points: { mango: 3, strawberry: 1 } },
       { text: 'Quiet and thoughtful', points: { blueberry: 3, lychee: 1 } },
       { text: 'Hopeful about what is coming', points: { lychee: 3, strawberry: 1 } },
-      { text: 'Curious about everything', points: { 'green-apple': 3, mango: 1 } }
+      { text: 'Curious about everything', points: { 'green-apple': 3, mango: 1 } },
+      { text: 'Relaxed, nothing is bugging me', points: { watermelon: 3, mango: 1 } }
     ] },
     { q: 'What is your energy right now?', answers: [
-      { text: 'I need to cool down', points: { 'cucumber-lemonade': 3, blueberry: 1 } },
+      { text: 'I need to cool down', points: { lemon: 3, blueberry: 1 } },
       { text: 'Confident, watch me', points: { grapes: 3, mango: 1 } },
       { text: 'Warm and caring', points: { strawberry: 3, lychee: 1 } },
-      { text: 'Playful and silly', points: { 'green-apple': 2, mango: 2 } }
+      { text: 'Playful and silly', points: { 'green-apple': 2, mango: 2 } },
+      { text: 'Ready to get things done', points: { orange: 3, grapes: 1 } }
     ] },
     { q: 'Who are you with?', answers: [
-      { text: 'Just myself', points: { blueberry: 1, 'cucumber-lemonade': 1 } },
-      { text: 'My besties', points: { mango: 1, 'green-apple': 1 } },
+      { text: 'Just myself', points: { blueberry: 1, lemon: 1 } },
+      { text: 'My besties', points: { watermelon: 1, 'green-apple': 1 } },
       { text: 'Someone special', points: { strawberry: 1, lychee: 1 } },
-      { text: 'A big fun crew', points: { grapes: 1, mango: 1 } }
+      { text: 'A big fun crew', points: { grapes: 1, orange: 1 } }
     ] },
     { q: 'What flavour vibe are you into?', answers: [
-      { text: 'Fresh and clean', points: { 'cucumber-lemonade': 2, lychee: 1 } },
+      { text: 'Fresh and juicy', points: { watermelon: 2, lychee: 1 } },
       { text: 'Sweet and fruity', points: { strawberry: 2, mango: 1 } },
-      { text: 'Tangy and zesty', points: { 'green-apple': 2, 'cucumber-lemonade': 1 } },
+      { text: 'Tangy and zesty', points: { 'green-apple': 2, lemon: 1, orange: 1 } },
       { text: 'Bold and deep', points: { grapes: 2, blueberry: 1 } }
     ] }
   ];
@@ -878,7 +881,9 @@
     'mango': 'You bring the sunshine. Your joy is catching, and everyone wants a seat at your table.',
     'green-apple': 'You ask "why?" and "what if?" before anyone else. Your curiosity keeps things interesting.',
     'blueberry': 'You are thoughtful and a little dreamy. You like quiet moments and you feel things deeply.',
-    'cucumber-lemonade': 'Some days are a lot. You know how to cool down, reset, and come back stronger.',
+    'lemon': 'Some days are a lot. You know how to shake it off, cool down, and come back stronger.',
+    'watermelon': 'Nothing is bugging you today. You go with the flow and keep things juicy.',
+    'orange': 'You woke up ready. Goals set, energy up, and you are not slowing down.',
     'grapes': 'You walk in like you own the room. Bold, steady, and sure of yourself.',
     'lychee': 'You believe good things are coming, and you are usually right. Light, bright, and hopeful.'
   };

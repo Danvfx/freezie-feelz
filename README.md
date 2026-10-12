@@ -34,7 +34,7 @@ Changing it updates the menu cards, the mood buttons in the hero, and the flavou
 
 ## Swap in real product photos
 
-All seven live flavours have photos. Spare photos for Watermelon, Lemon and Orange are saved in `assets/images/` and wired into the commented-out lines at the end of `FLAVORS`: the study says there are nine flavours but names seven, so uncomment two of them once the group confirms (add a comma after the last live line). The photo-to-flavour matching was guessed from the cup colours, so double-check it.
+All nine flavours (Mango, Watermelon, Lemon, Grapes, Blueberry, Strawberry, Lychee, Green Apple, Orange) have photos. A spare Cucumber Lemonade photo is saved in `assets/images/` and its `FLAVORS` line is commented out, because that flavour is in the study but not in the group's final nine. The photo-to-flavour matching was guessed from the cup colours, so double-check it.
 
 1. Make the photo a transparent cutout of the cup, about 800 x 1000 px (4:5 portrait), saved as `.webp` or `.png` in `assets/images/`, named like `flavor-mango.webp`. The existing files are a good size reference.
 2. In `FLAVORS`, set `image: 'assets/images/flavor-mango.webp'` for that flavour.

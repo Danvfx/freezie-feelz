@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FreezieFeelz | Sip your Feelz</title>
-  <meta name="description" content="FreezieFeelz sells fruity flavored Yakult drinks made by La Salle College Antipolo students. Pick a Feel or build your own, from ₱55.">
+  <meta name="description" content="FreezieFeelz sells fruity flavored Yakult drinks with real fruit pieces, made by La Salle College Antipolo students. Pick a Feel or build your own, from ₱55.">
   <meta name="theme-color" content="#0045ad">
   <meta property="og:title" content="FreezieFeelz | Sip your Feelz">
-  <meta property="og:description" content="Fruity flavored Yakult drinks that match your mood, made by students at La Salle College Antipolo.">
+  <meta property="og:description" content="Fruity flavored Yakult drinks with real fruit pieces that match your mood, made by students at La Salle College Antipolo.">
   <meta property="og:type" content="website">
   <link rel="icon" href="assets/icons/favicon.png" type="image/png">
   <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
@@ -177,7 +177,7 @@
           <h2 id="about-title">Your Mood, Your Flavour, Your FreezieFeelz</h2>
           <!-- TODO: story is based on the addendum's suggested About blurb. Rewrite in the team's own words if you like. -->
           <p>FreezieFeelz is a student-led drink business from La Salle College Antipolo. We took the Yakult you already know and gave it a fruity, fizzy twist, so you can sip the flavour that matches how you feel.</p>
-          <p>Feeling a bit blue? Blueberry has you. Feeling sweet? Try Strawberry. Every drink is made with Yakult, Sprite, and fruit flavouring, then served cold with ice.</p>
+          <p>Feeling a bit blue? Blueberry has you. Feeling sweet? Try Strawberry. Every drink is made with Yakult, a probiotic drink, plus Sprite, fruit flavouring and real fruit pieces, then served cold with ice.</p>
           <p>Our colours mean something too. Blue stands for loyalty and trust. Icy blue stands for freshness and cool.</p>
         </div>
 
@@ -269,8 +269,22 @@
         <header class="section__head reveal">
           <p class="eyebrow eyebrow--blue">The menu</p>
           <h2 id="menu-title">Pick your mood</h2>
-          <p class="section__sub">Your Mood, Your Flavour, Your FreezieFeelz. Every drink is Yakult mixed with Sprite and fruit flavouring, served cold with ice.</p>
+          <p class="section__sub">Your Mood, Your Flavour, Your FreezieFeelz. Every drink is Yakult mixed with Sprite, fruit flavouring and real fruit pieces, served cold with ice.</p>
         </header>
+
+        <!--
+          What is in the cup. WORDING NOTE: the group says the base is a probiotic, so it is described that way.
+          No health-benefit claims are made on purpose (the audience is 9 to 18 and the drink also has Sprite).
+          TODO: only add stronger health wording if the group can back it up with a source.
+        -->
+        <div class="inside reveal">
+          <h3 class="inside__title">What's in your cup</h3>
+          <ul class="inside__row">
+            <li><span class="inside__icon" aria-hidden="true">🥛</span><strong>Probiotic Yakult</strong><span>Our base is Yakult, a probiotic drink, for a feel-good sip.</span></li>
+            <li><span class="inside__icon" aria-hidden="true">🍓</span><strong>Real fruit pieces</strong><span>Real fruit pieces are in every cup, not just flavouring.</span></li>
+            <li><span class="inside__icon" aria-hidden="true">🧊</span><strong>Cold and fizzy</strong><span>Mixed with Sprite and served cold with ice.</span></li>
+          </ul>
+        </div>
 
         <!-- Two ways to order: pre-set flavours, or build your own. -->
         <div class="paths reveal">
@@ -296,7 +310,7 @@
         <h3 class="menu-sub" id="pick-a-feel">Pick a Feel</h3>
         <!-- Cards are built from the FLAVORS array at the top of script.js -->
         <ul class="menu-grid" id="menuGrid"></ul>
-        <!-- TODO: flavour names are the real list and sizes and prices are real (feasibility study). Mood tags are assumptions. Confirm the 2 missing flavours. -->
+        <!-- Flavour list and mood tags are final (confirmed by the group). Sizes and prices are real (feasibility study). TODO: flavour descriptions are placeholders. -->
         <noscript><p class="notice">Turn on JavaScript to see the menu.</p></noscript>
       </div>
     </section>
@@ -398,6 +412,10 @@
           <details name="faq" open>
             <summary>What is FreezieFeelz?</summary>
             <p>A student-run business at La Salle College Antipolo selling fruity flavored Yakult drinks that match your mood.</p>
+          </details>
+          <details name="faq">
+            <summary>What is in the drink?</summary>
+            <p>Yakult (a probiotic drink), Sprite, fruit flavouring and real fruit pieces, served cold with ice.</p>
           </details>
           <details name="faq">
             <summary>What flavours do you have?</summary>
