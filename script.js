@@ -89,7 +89,7 @@
   // Prices are NOT set per flavour. They come from SIZES above (16 oz and 22 oz).
   var FLAVORS = [
     { id: 'mango', mood: 'Joyful', name: 'Mango', desc: 'Sunny mango that makes any day feel like a celebration.', c1: '#ffe066', c2: '#ffb400', face: 'joyful', image: 'assets/images/flavor-mango.webp' },
-    { id: 'watermelon', mood: 'Carefree', name: 'Watermelon', desc: 'Juicy watermelon for when nothing is bugging you.', c1: '#48e87b', c2: '#48e87b', face: 'carefree', image: 'assets/images/flavor-watermelon.webp' },
+    { id: 'watermelon', mood: 'Carefree', name: 'Watermelon', desc: 'Juicy watermelon for when nothing is bugging you.', c1: '#65f78a', c2: '#65f78a', face: 'carefree', image: 'assets/images/flavor-watermelon.webp' },
     { id: 'lemon', mood: 'Frustrated', name: 'Lemon', desc: 'Sharp, zingy lemon to shake off a rough day.', c1: '#fff59a', c2: '#f0d000', face: 'frustrated', image: 'assets/images/flavor-lemon.webp' },
     { id: 'grapes', mood: 'Confident', name: 'Grapes', desc: 'Bold grape with a smooth finish. Walk in like you own it.', c1: '#d79bff', c2: '#6c3ad8', face: 'confident', image: 'assets/images/flavor-grapes.webp' },
     { id: 'blueberry', mood: 'Melancholic', name: 'Blueberry', desc: 'Cool blueberry for quiet, thoughtful moments.', c1: '#7fd0ff', c2: '#1a4fd6', face: 'melancholic', image: 'assets/images/flavor-blueberry.webp' },
