@@ -1284,3 +1284,15 @@ html:not(.js) #vibe { display: none; }
 @media (min-width: 960px) {
   .menu-grid > li:last-child:nth-child(3n + 1) { grid-column: 2; }
 }
+
+/* ==========================================================================
+   19. VIBRANT BACKDROPS: blend the two flavour colours through hue (oklch) so
+       pairs like pink and green pass through warm colours instead of turning grey.
+       Browsers without support keep the plain gradients above.
+   ========================================================================== */
+@supports (background: linear-gradient(in oklch, red, blue)) {
+  .card__blob { background: radial-gradient(circle at 35% 30% in oklch, var(--c1), var(--c2) 80%); }
+  .hero__blob { background: radial-gradient(circle at 35% 30% in oklch, var(--c1), var(--c2) 78%); }
+  .vt__blob   { background: radial-gradient(circle at 35% 30% in oklch, var(--c1), var(--c2) 78%); }
+  .vt__tile   { background: linear-gradient(150deg in oklch, var(--c1), var(--c2)); }
+}

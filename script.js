@@ -18,7 +18,7 @@
         Formspree:  "https://formspree.io/f/yourFormId"
         Web3Forms:  "https://api.web3forms.com/submit"  (and set ACCESS_KEY below)
       Leave it as "" and the form falls back to Option 2: it builds a ready-to-send
-      message, copies it, and lets the customer send it on Messenger.
+      message, copies it, and lets the customer send it on Instagram.
     */
     FORM_ENDPOINT: '',
 
@@ -43,11 +43,8 @@
   };
 
   var LINKS = {
-    // TODO: replace both "#" placeholders with the real links, for example
-    //   messenger: "https://m.me/yourpage"
-    //   instagram: "https://instagram.com/yourhandle"
-    messenger: '#',
-    instagram: '#'
+    // The group's Instagram. Every Instagram button, footer link and the order-form fallback read this.
+    instagram: 'https://www.instagram.com/freeziefeelz/'
   };
 
   /*
@@ -92,7 +89,7 @@
   // Prices are NOT set per flavour. They come from SIZES above (16 oz and 22 oz).
   var FLAVORS = [
     { id: 'mango', mood: 'Joyful', name: 'Mango', desc: 'Sunny mango that makes any day feel like a celebration.', c1: '#ffe066', c2: '#ffb400', face: 'joyful', image: 'assets/images/flavor-mango.webp' },
-    { id: 'watermelon', mood: 'Carefree', name: 'Watermelon', desc: 'Juicy watermelon for when nothing is bugging you.', c1: '#ff9db0', c2: '#35c27a', face: 'carefree', image: 'assets/images/flavor-watermelon.webp' },
+    { id: 'watermelon', mood: 'Carefree', name: 'Watermelon', desc: 'Juicy watermelon for when nothing is bugging you.', c1: '#6df29a', c2: '#06c24a', face: 'carefree', image: 'assets/images/flavor-watermelon.webp' },
     { id: 'lemon', mood: 'Frustrated', name: 'Lemon', desc: 'Sharp, zingy lemon to shake off a rough day.', c1: '#fff59a', c2: '#f0d000', face: 'frustrated', image: 'assets/images/flavor-lemon.webp' },
     { id: 'grapes', mood: 'Confident', name: 'Grapes', desc: 'Bold grape with a smooth finish. Walk in like you own it.', c1: '#d79bff', c2: '#6c3ad8', face: 'confident', image: 'assets/images/flavor-grapes.webp' },
     { id: 'blueberry', mood: 'Melancholic', name: 'Blueberry', desc: 'Cool blueberry for quiet, thoughtful moments.', c1: '#7fd0ff', c2: '#1a4fd6', face: 'melancholic', image: 'assets/images/flavor-blueberry.webp' },
@@ -141,7 +138,7 @@
     el.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
   }
 
-  /* Apply the Messenger / Instagram links from CONFIG to every [data-link] anchor */
+  /* Apply the Instagram link from LINKS to every [data-link] anchor */
   function applyLinks() {
     $$('[data-link]').forEach(function (a) {
       if (a.getAttribute('data-bound')) { return; }
@@ -354,8 +351,6 @@
       if (btn) { chooseFlavor(btn.getAttribute('data-order')); }
     });
 
-    // "Build Your Own" path button
-    $$('[data-build]').forEach(function (b) { b.addEventListener('click', chooseCustom); });
   }
 
   /* ======================================================================
@@ -375,11 +370,6 @@
       o.textContent = f.name + ' – The ' + f.mood;
       flavorSel.appendChild(o);
     });
-    // Second path: build your own combination
-    var own = document.createElement('option');
-    own.value = 'custom';
-    own.textContent = 'Build Your Own (mix one or two flavours)';
-    flavorSel.appendChild(own);
   }
 
   /* Size options come from SIZES, so prices live in one place. */
@@ -397,38 +387,17 @@
     });
   }
 
-  /* Flavour pickers for "Build Your Own" */
-  function buildMixOptions() {
-    [['#o-mix1', 'Choose a flavour'], ['#o-mix2', 'No second flavour']].forEach(function (cfg) {
-      var sel = $(cfg[0]);
-      var first = document.createElement('option');
-      first.value = '';
-      first.textContent = cfg[1];
-      sel.appendChild(first);
-      FLAVORS.forEach(function (f) {
-        var o = document.createElement('option');
-        o.value = f.id;
-        o.textContent = f.name;
-        sel.appendChild(o);
-      });
-    });
-  }
-
   var THIRD_PARTY = 'Third-party delivery';
 
   function setRequired(field, on) {
     if (on) { field.setAttribute('required', ''); } else { field.removeAttribute('required'); clearError(field); }
   }
 
-  /* Show the delivery-app picker and the Build Your Own pickers only when they apply. */
+  /* Show the delivery-app picker only when third-party delivery is chosen. */
   function syncOrderFields() {
     var third = $('#o-method').value === THIRD_PARTY;
     $('#o-provider-field').hidden = !third;
     setRequired($('#o-provider'), third);
-
-    var custom = flavorSel.value === 'custom';
-    $('#o-custom').hidden = !custom;
-    setRequired($('#o-mix1'), custom);
   }
 
   function clampQty() {
@@ -458,19 +427,6 @@
     syncOrderFields();
     updateTotal();
     toast(f.name + ' added to your order');
-    scrollToEl($('#order'));
-    setTimeout(function () { $('#o-name').focus({ preventScroll: true }); }, reduceMotion ? 0 : 600);
-  }
-
-  /* Called by the "Build Your Own" button in the menu section */
-  function chooseCustom() {
-    showTab('order');
-    resetOrderForm(false);
-    flavorSel.value = 'custom';
-    clearError(flavorSel);
-    syncOrderFields();
-    updateTotal();
-    toast('Build Your Own: pick up to two flavours');
     scrollToEl($('#order'));
     setTimeout(function () { $('#o-name').focus({ preventScroll: true }); }, reduceMotion ? 0 : 600);
   }
@@ -509,10 +465,9 @@
   var MESSAGES = {
     'o-name': 'Please tell us your name so we know who the order is for.',
     'o-grade': 'Add your grade and section so we can find you.',
-    'o-flavor': 'Pick a flavour, or choose Build Your Own.',
-    'o-mix1': 'Pick the first flavour for your Build Your Own drink.',
+    'o-flavor': 'Pick a flavour to continue.',
     'o-size': 'Choose 16 oz or 22 oz.',
-    'o-payment': 'Choose how you will pay: GCash, Maya, or cash.',
+    'o-payment': 'Choose how you will pay: GCash or cash.',
     'o-provider': 'Choose Grab, Foodpanda, or Lalamove.',
     'o-qty': 'Choose between 1 and 20 drinks.',
     'o-time': 'Tell us when you would like it, like "Recess on Friday".',
@@ -570,10 +525,7 @@
   }
 
   function orderData() {
-    var custom = flavorSel.value === 'custom';
     var f = findFlavor(flavorSel.value);
-    var m1 = findFlavor($('#o-mix1').value);
-    var m2 = findFlavor($('#o-mix2').value);
     var n = clampQty();
     var p = orderPricing($('#o-size').value, n);
     var third = $('#o-method').value === THIRD_PARTY;
@@ -581,9 +533,7 @@
       type: 'Order',
       name: $('#o-name').value.trim(),
       grade_and_section: $('#o-grade').value.trim(),
-      flavour: custom
-        ? 'Build Your Own: ' + (m1 ? m1.name : '') + (m2 ? ' + ' + m2.name : '')
-        : f.name + ' (The ' + f.mood + ')',
+      flavour: f.name + ' (The ' + f.mood + ')',
       size: p.size.label,
       quantity: n,
       free_drinks: p.free,
@@ -605,7 +555,7 @@
     };
   }
 
-  /* Turn the data into a plain-text message (used for email subjects and the Messenger fallback) */
+  /* Turn the data into a plain-text message (used for email subjects and the Instagram fallback) */
   function toMessage(d) {
     if (d.type === 'Order') {
       return 'New FreezieFeelz order\n' +
@@ -630,7 +580,7 @@
     SEND. This is the one place the form talks to the outside world.
     With FORM_ENDPOINT set, it POSTs JSON (works with Formspree and Web3Forms).
     Without it, it resolves with { fallback: true } and the success panel shows
-    the copy-and-send-on-Messenger message instead.
+    the copy-and-send-on-Instagram message instead.
   */
   function send(data) {
     if (!CONFIG.FORM_ENDPOINT) {
@@ -672,15 +622,15 @@
     var html;
 
     if (result.fallback) {
-      // Option 2: no form service connected yet, so hand the message over to Messenger
+      // Option 2: no form service connected yet, so hand the message over to Instagram
       html =
         '<div class="success__icon" aria-hidden="true">🧊</div>' +
         '<h3>Almost there!</h3>' +
-        '<p>Your message is ready. Send it to us on Messenger and we\'ll get back to you.</p>' +
+        '<p>Your message is ready. Send it to us in a message on Instagram and we\'ll get back to you.</p>' +
         '<textarea class="success__summary" readonly aria-label="Your message">' + msg.replace(/&/g, '&amp;').replace(/</g, '&lt;') + '</textarea>' +
         '<div class="success__actions">' +
           '<button class="btn btn--sun btn--block" type="button" data-act="copy">Copy my message</button>' +
-          '<a class="btn btn--white btn--block" href="' + (LINKS.messenger || '#') + '" data-link="messenger" target="_blank" rel="noopener">Open Messenger</a>' +
+          '<a class="btn btn--white btn--block" href="' + (LINKS.instagram || '#') + '" data-link="instagram" target="_blank" rel="noopener">Open Instagram</a>' +
           '<button class="btn btn--ghost-dark btn--block" type="button" data-act="again">Start a new ' + (kind === 'order' ? 'order' : 'message') + '</button>' +
         '</div>';
     } else {
@@ -714,7 +664,7 @@
       } else {
         var ta = $('.success__summary', box);
         copyText(msg, ta).then(function (ok) {
-          toast(ok ? 'Copied! Paste it into Messenger.' : 'Select the text and copy it by hand.');
+          toast(ok ? 'Copied! Paste it into an Instagram message.' : 'Select the text and copy it by hand.');
         });
       }
     };
@@ -722,7 +672,7 @@
     // Try to copy for them straight away so it is one paste away
     if (result.fallback) {
       copyText(msg, $('.success__summary', box)).then(function (ok) {
-        if (ok) { toast('Message copied. Paste it into Messenger.'); }
+        if (ok) { toast('Message copied. Paste it into an Instagram message.'); }
       });
     }
   }
@@ -760,7 +710,7 @@
       send(data).then(function (result) {
         showSuccess(kind, data, result);
       }).catch(function () {
-        statusEl.textContent = 'We couldn\'t send that just now. Check your internet and try again, or message us on Messenger.';
+        statusEl.textContent = 'We couldn\'t send that just now. Check your internet and try again, or message us on Instagram.';
       }).then(function () {
         btn.disabled = false;
         btn.textContent = label;
@@ -771,7 +721,6 @@
   function initForms() {
     buildFlavorOptions();
     buildSizeOptions();
-    buildMixOptions();
 
     var orderForm = $('#orderForm');
     var inquiryForm = $('#inquiryForm');
@@ -966,7 +915,6 @@
           (next ? '<p class="vt__res-next">Close second: The ' + next.mood + ' (' + next.name + ')</p>' : '') +
           '<div class="vt__actions">' +
             '<button class="btn btn--sun" type="button" data-act="order">Order this</button>' +
-            '<button class="btn btn--white" type="button" data-act="build">Build Your Own</button>' +
             '<button class="btn btn--ghost" type="button" data-act="share">Share my Feel</button>' +
             '<button class="vt__link" type="button" data-act="retake">Retake the test</button>' +
           '</div>' +
@@ -1025,7 +973,6 @@
       var f = findFlavor(result.dataset.flavor);
       var what = act.getAttribute('data-act');
       if (what === 'order') { chooseFlavor(f.id); }
-      if (what === 'build') { chooseCustom(); }
       if (what === 'share') { shareResult(f); }
       if (what === 'retake') { start(); }
     });

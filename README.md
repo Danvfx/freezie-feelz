@@ -54,7 +54,7 @@ The "What's your FreezieFeelz?" quiz sits between About and Menu. Edit it in `sc
 - `VIBE_QUESTIONS`: four questions, four answers each. Every answer gives points to flavours by `id`. The flavour with the most points wins, and earlier questions break ties.
 - `VIBE_LINES`: the one-line personality text on each result.
 - A flavour that is not in `FLAVORS` is ignored, so the quiz keeps working when flavours change. To make a new flavour reachable, add its `id` to a few answers.
-- The result buttons reuse the order form: Order this pre-fills the flavour, Build Your Own opens the custom mix.
+- The result's Order this button pre-fills the order form with that flavour.
 
 ## Sizes, prices, promos and hours
 
@@ -77,11 +77,11 @@ Forms are handled by `send()` in `script.js`, configured in `CONFIG` at the top.
 
 Submissions then arrive in your email, and the visitor sees a success message.
 
-**Until then (Option 2, the built-in fallback)**: with `FORM_ENDPOINT` left empty, the form builds a ready-to-send message, copies it, and shows an **Open Messenger** button. The visitor pastes it into Messenger. Nothing is lost, but it is not automatic.
+**Until then (Option 2, the built-in fallback)**: with `FORM_ENDPOINT` left empty, the form builds a ready-to-send message, copies it, and shows an **Open Instagram** button. The visitor pastes it into an Instagram message. Nothing is lost, but it is not automatic.
 
-## Set the Messenger and Instagram links
+## Instagram link
 
-In `script.js`, edit `LINKS` (`messenger` and `instagram`). Every button and footer link updates from there. Until set, they show a "coming soon" message instead of jumping to the top.
+In `script.js`, edit `LINKS.instagram` (currently https://www.instagram.com/freeziefeelz/). Every Instagram button and footer link updates from there. Until set, they show a "coming soon" message instead of jumping to the top.
 
 ## Change colours and fonts
 
