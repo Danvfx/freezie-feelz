@@ -1296,3 +1296,40 @@ html:not(.js) #vibe { display: none; }
   .vt__blob   { background: radial-gradient(circle at 35% 30% in oklch, var(--c1), var(--c2) 78%); }
   .vt__tile   { background: linear-gradient(150deg in oklch, var(--c1), var(--c2)); }
 }
+
+/* ==========================================================================
+   20. SDG 3 SECTION. Green is the goal's own colour (#4C9F38). Text badge only.
+   ========================================================================== */
+.sdg__head { display: grid; gap: 1.25rem; align-items: start; margin-bottom: clamp(2rem, 5vw, 3rem); }
+.sdg__badge {
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  font-family: var(--font-display);
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--white);
+  background: #4c9f38;
+  border: var(--border);
+  border-radius: var(--r-md);
+  box-shadow: var(--pop);
+}
+.sdg__head h2 { color: var(--blue); }
+.sdg__row { display: grid; gap: 1.25rem; }
+.sdg__card {
+  display: grid;
+  gap: .4rem;
+  justify-items: start;
+  padding: 1.4rem;
+  background: var(--ice);
+  border: var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: 0 5px 0 #4c9f38;
+}
+.sdg__card h3 { margin: .3rem 0 0; font-size: 1.35rem; }
+.sdg__card p { margin: 0; }
+.sdg__more { margin: 1.5rem 0 0; font-weight: 700; }
+@media (min-width: 700px) { .sdg__head { grid-template-columns: auto 1fr; gap: 1.75rem; } }
+@media (min-width: 860px) { .sdg__row { grid-template-columns: repeat(3, 1fr); } }
